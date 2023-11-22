@@ -10,7 +10,7 @@ interface SidebarItemProps {
  href: string;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({
+export const SidebarItem: React.FC<SidebarItemProps> = ({
  icon: Icon,
  label,
  active,
@@ -29,5 +29,3 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   </Link>
  );
 };
-
-export default SidebarItem;

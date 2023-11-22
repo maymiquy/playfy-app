@@ -7,7 +7,8 @@ import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 
 import Box from "./Box";
-import SidebarItem from "./SidebarItem";
+import { SidebarItem } from "./SidebarItem";
+import { Library } from "./Library";
 
 interface SidebarProps {
  children: React.ReactNode;
@@ -43,9 +44,11 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
       ))}
      </div>
     </Box>
-    <Box className="overflow-y-auto h-full px-5 py-4">Song Library</Box>
+    <Box className="overflow-y-auto h-full">
+     <Library />
+    </Box>
    </div>
-   <main className="w-full min-h-screen">{children}</main>
+   <main className="h-full flex-1 overflow-y-auto py-2 pe-2">{children}</main>
   </div>
  );
 };

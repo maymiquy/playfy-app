@@ -1,11 +1,15 @@
+import Header from "@/components/Header";
+
 interface HomeProps {
  children: React.ReactNode;
 }
 
 export default function Home({ children }: HomeProps) {
  return (
-  <div className="flex w-full justify-center text-white items-center">
-   <h1>Playfy Content</h1>
+  <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
+   <Header className="">
+    <div></div>
+   </Header>
   </div>
  );
 }
