@@ -2,12 +2,14 @@
 import { TbPlaylist } from "react-icons/tb";
 import { AiOutlinePlus } from "react-icons/ai";
 
-export const Library = () => {
+const Library = () => {
  const onCLick = () => {
   // TODO : Handle upload
  };
+
+ //  TODO : Make div for gradient
  return (
-  <div className="flex flex-col">
+  <div className="flex flex-col pb-9 bg-gradient-to-b from-purple-800/60">
    <div className="flex items-center justify-between px-5 pt-4">
     <div className="inline-flex items-center gap-x-2">
      <TbPlaylist className="text-neutral-400" size={26} />
@@ -23,3 +25,4 @@ export const Library = () => {
   </div>
  );
 };
+export default Library;
