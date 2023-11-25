@@ -1,5 +1,5 @@
 import { User } from "@supabase/auth-helpers-nextjs";
-import { UserDetails } from "../../packages/types/types";
+import { UserDetails } from "@/libs/types/types";
 import { createContext, useContext, useEffect, useState } from "react";
 import {
  useSessionContext,
