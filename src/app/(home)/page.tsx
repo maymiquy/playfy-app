@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/components/ui/Header";
 import ListItem from "@/components/ListItem";
 
 function Home() {
