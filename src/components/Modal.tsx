@@ -28,12 +28,9 @@ const Modal: React.FC<ModalProps> = ({
     border-neutral-700 
     top-[50%] 
     left-[50%] 
-    max-h-full 
-    h-full 
-    md:h-auto 
+    h-auto 
     md:max-h-[85vh] 
-    w-full 
-    md:w-[90vw] 
+    w-[90vw] 
     md:max-w-[450px] 
     translate-x-[-50%] 
     translate-y-[-50%] 
@@ -45,7 +42,9 @@ const Modal: React.FC<ModalProps> = ({
     >
      <Dialog.Title
       className="
-              text-xl 
+              text-xl
+              sm:text-2xl
+              md:text-3xl 
               text-center 
               font-bold 
               mb-4
@@ -68,13 +67,15 @@ const Modal: React.FC<ModalProps> = ({
       <button
        className="
                 text-neutral-400 
-                hover:text-white 
+                hover:text-white
+                hover:bg-red-600 
                 absolute 
-                top-[10px] 
-                right-[10px] 
-                inline-flex 
-                h-[25px] 
-                w-[25px] 
+                top-[5px] 
+                right-[5px] 
+                inline-flex
+                hover:p-px 
+                h-[28px] 
+                w-[28px] 
                 appearance-none 
                 items-center 
                 justify-center 
@@ -83,7 +84,7 @@ const Modal: React.FC<ModalProps> = ({
               "
        aria-label="Close"
       >
-       <IoMdClose />
+       <IoMdClose className="w-[28px] h-[28px]" />
       </button>
      </Dialog.Close>
     </Dialog.Content>
