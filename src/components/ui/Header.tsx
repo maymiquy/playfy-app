@@ -7,7 +7,12 @@ import { twMerge } from "tailwind-merge";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
+import { FaUserAlt } from "react-icons/fa";
 import Button from "../Button";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useUser } from "@/hooks/useUser";
+import toast from "react-hot-toast";
+import Link from "next/link";
 
 interface HeaderProps {
  children: React.ReactNode;
@@ -18,13 +23,36 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
  const router = useRouter();
  const { onOpen } = useAuthModal();
 
+ const supabaseClient = useSupabaseClient();
+ const { user } = useUser();
+
+ const handleLogout = async () => {
+  const { error } = await supabaseClient.auth.signOut();
+  // TODO: Reset any playing songs
+  router.refresh();
+
+  if (error) {
+   toast.error(error.message);
+  } else {
+   toast.success("Loggout success");
+  }
+ };
+
  return (
   <div
    className={twMerge(
-    `h-fit bg-gradient-to-b from-purple-800 p-6 text-white`,
+    `h-fit bg-gradient-to-b from-purple-800 py-7 px-6 text-white`,
     className,
    )}
   >
+   <div className="absolute top-0 right-[38px] md:top-2 md:right-[46px]">
+    <Link
+     className="bg-transparent text-neutral-400 text-[10px] underline font-sans hover:text-neutral-200 font-semibold"
+     href="https://github.com/maymiquy/playfy-app/issues"
+    >
+     find a bug?
+    </Link>
+   </div>
    <div className="w-full flex items-center justify-between mb-4">
     <div className="hidden md:flex gap-x-2 items-center">
      <button
@@ -49,24 +77,30 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
      </button>
     </div>
     <div className="flex justify-between items-center gap-x-4">
-     <>
-      <div>
+     {!user ? (
+      <>
+       <div>
+        <Button
+         className="bg-neutral-100/10 px-4 py-2 hover:bg-neutral-100/20 drop-shadow-lg"
+         onClick={onOpen}
+        >
+         Sign In
+        </Button>
+       </div>
+      </>
+     ) : (
+      <div className="flex gap-x-4 items-center">
        <Button
-        className="bg-transparent text-neutral-300 hover:text-white font-semibold"
-        onClick={onOpen}
+        className="bg-neutral-100/10 hover:bg-red-600/75 focus:bg-red-600/90 px-4 py-2 text-neutral-300 transition"
+        onClick={handleLogout}
        >
-        Sign Up
+        Logout
+       </Button>
+       <Button className="rounded-full bg-neutral-100/10 hover:bg-neutral-100/20 p-3 flex items-center justify-center transition">
+        <FaUserAlt />
        </Button>
       </div>
-      <div>
-       <Button
-        className="bg-neutral-100/10 px-4 py-2 hover:bg-neutral-100/20 drop-shadow-lg"
-        onClick={onOpen}
-       >
-        Sign In
-       </Button>
-      </div>
-     </>
+     )}
     </div>
    </div>
    {children}
