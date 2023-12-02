@@ -1,9 +1,12 @@
 import Header from "@/components/ui/Header";
 import ListItem from "@/components/ListItem";
+import ToasterNotif from "@/components/ui/ToasterNotif";
+import Link from "next/link";
 
 function Home() {
  return (
-  <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
+  <div className="bg-neutral-900 md:rounded-lg h-full w-full overflow-hidden overflow-y-auto">
+   <ToasterNotif />
    <Header className="">
     <div className="mb-2">
      <h1 className="text-white text-3xl font-semibold">Welcome to Playfy</h1>
