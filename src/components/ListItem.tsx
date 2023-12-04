@@ -28,7 +28,13 @@ const ListItem: React.FunctionComponent<ListItemProps> = ({
    onClick={onClick}
   >
    <div className="relative min-h-[64px] min-w-[64px]">
-    <Image className="object-cover" src={image} alt="Image" fill />
+    <Image
+     className="object-cover"
+     src={image}
+     width={64}
+     height={64}
+     alt="Image"
+    />
    </div>
    <p className="font-medium truncate py-5">{name}</p>
    <div className="flex justify-center items-center absolute opacity-0 rounded-full bg-purple-600/80 group-hover:opacity-100 transition p-4 drop-shadow-lg right-5 hover:scale-110">

@@ -1,6 +1,7 @@
 "use client";
 
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSessionContext } from "@supabase/auth-helpers-react";
+import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -10,21 +11,22 @@ import Modal from "../Modal";
 import Button from "../Button";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoGithub } from "react-icons/io";
-import { useUser } from "@/hooks/useUser";
 
 const AuthModal = () => {
  const router = useRouter();
  const { onClose, isOpen } = useAuthModal();
- const supabaseClient = useSupabaseClient();
- const { user } = useUser();
+ const { session } = useSessionContext();
+ const supabaseClient = createPagesBrowserClient({
+  supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+  supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+ });
 
  useEffect(() => {
-  if (user) {
+  if (session) {
    router.refresh();
    onClose();
   }
-  console.log(user);
- }, [user]);
+ }, [session]);
 
  const onChange = (open: boolean) => {
   if (!open) {
